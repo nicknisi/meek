@@ -1,0 +1,25 @@
+{
+  "name": "meek",
+  "version": "0.0.1",
+  "authors": [
+    "Nick Nisi <nick@nisi.org>"
+  ],
+  "description": "A gentle JavaScript game engine",
+  "keywords": [
+    "javascript",
+    "dojo",
+    "game",
+    "amd",
+    "html5",
+    "canvas"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+"node_modules",
+"bower_components",
+"test",
+"tests"
+  ]
+}
