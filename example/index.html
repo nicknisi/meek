@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<canvas id="canvas" width="800" height="600"></canvas>
+	<script src="../dojoConfig.js"></script>
+	<script data-dojo-config="baseUrl:'../'" src="../bower_components/dojo/dojo.js"></script>
+	<script>
+		require([
+			'dojo/_base/declare',
+			'meek',
+			'meek/Game',
+			'meek/SpriteSheet',
+			'meek/Sprite'
+		], function (declare, meek, Game, SpriteSheet, Sprite) {
+			var MyGame = declare(Game, {
+				constructor: function () {
+					this.sheet = new SpriteSheet('./superbrown.png', 5, 3);
+					this.sprite = new Sprite(this.sheet, [7,8,7,8,7,8,6,6,6,6,6,5,5,5,5,5,5,5]);
+					// this.sprite = new Sprite(this.sheet, [1,2,3,4]);
+				},
+
+				draw: function () {
+					meek.clear();
+					this.inherited(arguments);
+					this.sprite.draw(100, 100);
+				}
+			});
+
+			meek.start('canvas', MyGame, 30, 800, 600);
+		});
+	</script>
+</body>
+</html>
