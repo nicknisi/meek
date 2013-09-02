@@ -1,8 +1,9 @@
 define([
 	'exports',
 	'dojo/_base/declare',
-	'dojo/_base/lang'
-], function (exports, declare, lang) {
+	'dojo/_base/lang',
+	'./util'
+], function (exports, declare, lang, util) {
 	var System = declare(null, {
 		_running: false,
 		context: null,
@@ -12,19 +13,13 @@ define([
 		defaultFillColor: '#000',
 
 		startAnimation: function (callback) {
-			var self = this;
-			function animate() {
-				if (!self._running) { return; }
-				window.requestAnimationFrame(animate);
-				callback();
-			}
-
 			this._running = true;
-			window.requestAnimationFrame(animate);
+			this._animHandle = util.requestInterval(callback, 1000 / this.fps);
 		},
 
 		stopAnimation: function () {
 			this._running = false;
+			util.clearRequestInterval(this._animHandle);
 		},
 
 		run: function () {

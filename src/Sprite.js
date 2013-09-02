@@ -18,6 +18,7 @@ define([
 		_animationIndex: null, // index into the current animation
 		_animations: null, // array of frames that makes up animation
 		_currAnimation: null, // current animation index
+		context: null,
 
 		constructor: function (options) {
 			lang.mixin(this, options);
@@ -59,7 +60,10 @@ define([
 				destWidth = tileWidth * scale,
 				destHeight = tileHeight * scale;
 
-			system.context.drawImage(image, tile.x, tile.y, tileWidth, tileHeight, destWidth, destHeight, x, y);
+			if (!this.context) {
+				this.context = system.context;
+			}
+			this.context.drawImage(image, tile.x, tile.y, tileWidth, tileHeight, destWidth, destHeight, x, y);
 		},
 
 		update: function () {
