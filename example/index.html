@@ -12,15 +12,25 @@
 		require([
 			'dojo/_base/declare',
 			'meek',
-			'meek/Game',
-			'meek/SpriteSheet',
-			'meek/Sprite'
-		], function (declare, meek, Game, SpriteSheet, Sprite) {
-			var MyGame = declare(Game, {
+			'meek/AnimationLoop',
+			'meek/Sprite',
+			'meek/plugin/image!./superbrown.png'
+		], function (declare, meek, AnimationLoop, Sprite, image) {
+			window.image = image;
+			var MyLoop = declare(AnimationLoop, {
 				constructor: function () {
-					this.sheet = new SpriteSheet('./superbrown.png', 5, 3);
-					this.sprite = new Sprite(this.sheet, [7,8,7,8,7,8,6,6,6,6,6,5,5,5,5,5,5,5]);
-					// this.sprite = new Sprite(this.sheet, [1,2,3,4]);
+					this.sprite = new Sprite({
+						image: image,
+						rows: 3,
+						cols: 5
+					});
+					
+					this.sprite.addAnimation('idle', [7,8,7,8,7,8,6,6,6,6,6,5,5,5,5,5,5,5]);
+					this.sprite.set('animation', 'idle');
+				},
+
+				update: function () {
+					this.sprite.update();
 				},
 
 				draw: function () {
@@ -30,7 +40,7 @@
 				}
 			});
 
-			meek.start('canvas', MyGame, 30, 800, 600);
+			meek.start('canvas', MyLoop, 30, 800, 600);
 		});
 	</script>
 </body>

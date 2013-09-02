@@ -11,16 +11,27 @@ define([
 		height: null,
 		defaultFillColor: '#000',
 
-		animate: function animate() {
-			window.requestAnimationFrame(lang.hitch(this, animate));
-			this.draw();
+		startAnimation: function (callback) {
+			var self = this;
+			function animate() {
+				if (!self._running) { return; }
+				window.requestAnimationFrame(animate);
+				callback();
+			}
+
+			this._running = true;
+			window.requestAnimationFrame(animate);
 		},
 
-		draw: function () {
-			this.gameInstance.run();
+		stopAnimation: function () {
+			this._running = false;
 		},
 
-		start: function (cid, Game, fps, width, height) {
+		run: function () {
+			this.loopInstance.run();
+		},
+
+		start: function (cid, Loop, fps, width, height) {
 			if (this._running) { return; }
 
 			this._running = true;
@@ -30,8 +41,9 @@ define([
 			this.width = width;
 			this.height = height;
 
-			this.gameInstance = new Game();
-			this.animate();
+			this.loopInstance = new Loop();
+			console.log('starting animation');
+			this.startAnimation(lang.hitch(this, this.run));
 		},
 
 		clear: function (color) {
