@@ -13,20 +13,12 @@
 			'dojo/_base/declare',
 			'meek',
 			'meek/AnimationLoop',
-			'meek/Sprite',
-			'meek/plugin/image!./superbrown.png'
-		], function (declare, meek, AnimationLoop, Sprite, image) {
-			window.image = image;
+			'./sprites/SuperBrown'
+		], function (declare, meek, AnimationLoop, SuperBrown) {
 			var MyLoop = declare(AnimationLoop, {
 				constructor: function () {
-					this.sprite = new Sprite({
-						image: image,
-						rows: 3,
-						cols: 5
-					});
-					
-					this.sprite.addAnimation('idle', [7,8,7,8,7,8,6,6,6,6,6,5,5,5,5,5,5,5]);
-					this.sprite.set('animation', 'idle');
+					this.sprite = new SuperBrown();
+					// .addAnimation('idle', [7,8,7,8,7,8,6,6,6,6,6,5,5,5,5,5,5,5]);
 				},
 
 				update: function () {

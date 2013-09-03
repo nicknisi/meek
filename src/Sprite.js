@@ -45,6 +45,11 @@ define([
 
 		addAnimation: function (name, sequence) {
 			this._animations[name] = sequence;
+			if (!this._currAnimation) {
+				this.set('animation', name);
+			}
+
+			return this;
 		},
 
 		_animationSetter: function (val) {
