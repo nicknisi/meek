@@ -9,7 +9,7 @@ module.exports = function (grunt) {
 
 	grunt.initConfig({
 		jshint: {
-			all: ['Gruntfile.js', 'src/**/*.js']
+			all: ['**/*.js', '!node_modules/**', '!bower_components/**']
 		},
 		connect: {
 			livereload: {
@@ -23,7 +23,7 @@ module.exports = function (grunt) {
 		},
 		regarde: {
 			htmljs: {
-				files: ['examples/index.html', 'src/**/*.js'],
+				files: ['examples/index.html', '**/*.js', '!node_modules/**', '!bower_components/**'],
 				tasks: ['livereload']
 			}
 		}
