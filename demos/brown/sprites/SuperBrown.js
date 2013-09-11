@@ -14,6 +14,7 @@ define([
 		constructor: function () {
 			this.inherited(arguments);
 			this.addAnimation('waiting',  [7, 8, 7, 8, 7, 8, 6, 6, 6, 6, 6, 5, 5, 5, 5, 6, 6, 6]);
+			this.addAnimation('running',  [0, 1, 2], 0.1);
 		}
 	});
 });
