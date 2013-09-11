@@ -3,7 +3,7 @@ define([
 	'dojo/_base/lang',
 	'dojo/Stateful',
 	'dojo/on',
-	'./main',
+	'./system',
 ], function (declare, lang, Stateful, on, system) {
 	return declare(Stateful, {
 		inputState: null,

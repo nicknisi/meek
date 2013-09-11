@@ -10,21 +10,21 @@
 	<script>
 		var dojoConfig = {
 			async: true,
-			baseUrl: '../',
+			baseUrl: '../../',
 			packages: [
 				{ name: 'dojo', location: 'bower_components/dojo' },
-				{ name: 'meek', location: './src', main: 'main' },
-				'example'
+				{ name: 'meek', location: '../' },
+				{ name: 'brown', location: 'demos/brown' }
 			]
 		};
 	</script>
-	<script src="../bower_components/dojo/dojo.js"></script>
+	<script src="../../bower_components/dojo/dojo.js"></script>
 	<script>
 		require([
 			'dojo/_base/declare',
-			'meek',
+			'meek/system',
 			'meek/AnimationLoop',
-			'example/sprites/SuperBrown'
+			'brown/sprites/SuperBrown'
 		], function (declare, meek, AnimationLoop, SuperBrown) {
 			var MyLoop = declare(AnimationLoop, {
 				constructor: function () {

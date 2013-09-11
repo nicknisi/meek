@@ -1,5 +1,5 @@
 define([
-	'./main',
+	'./system',
 	'./Timer',
 	'dojo/_base/declare',
 	'dojo/_base/lang',
