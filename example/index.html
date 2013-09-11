@@ -2,33 +2,33 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title></title>
+	<title>Meek Example Page</title>
+    <link rel="shortcut icon" href="favicon.ico"/>
 </head>
 <body>
 	<canvas id="canvas" width="800" height="600"></canvas>
-	<script src="../dojoConfig.js"></script>
-	<script data-dojo-config="baseUrl:'../'" src="../bower_components/dojo/dojo.js"></script>
+	<script>
+		var dojoConfig = {
+			async: true,
+			baseUrl: '../',
+			packages: [
+				{ name: 'dojo', location: 'bower_components/dojo' },
+				{ name: 'meek', location: './src', main: 'main' },
+				'example'
+			]
+		};
+	</script>
+	<script src="../bower_components/dojo/dojo.js"></script>
 	<script>
 		require([
 			'dojo/_base/declare',
 			'meek',
 			'meek/AnimationLoop',
-			'./sprites/SuperBrown'
+			'example/sprites/SuperBrown'
 		], function (declare, meek, AnimationLoop, SuperBrown) {
 			var MyLoop = declare(AnimationLoop, {
 				constructor: function () {
-					this.sprite = new SuperBrown();
-					// .addAnimation('idle', [7,8,7,8,7,8,6,6,6,6,6,5,5,5,5,5,5,5]);
-				},
-
-				update: function () {
-					this.sprite.update();
-				},
-
-				draw: function () {
-					meek.clear();
-					this.inherited(arguments);
-					this.sprite.draw(100, 100);
+					this.addEntity(new SuperBrown());
 				}
 			});
 

@@ -10,7 +10,9 @@
 
 			var image = new Image();
 			image.onerror = function (err) {
-				onload.error(err);
+				console.error(image, err);
+				// throw new Error('unable to load image', err);
+				// onload.error(err);
 			};
 
 			image.onload = function () {

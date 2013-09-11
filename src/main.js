@@ -2,8 +2,9 @@ define([
 	'exports',
 	'dojo/_base/declare',
 	'dojo/_base/lang',
-	'./util'
-], function (exports, declare, lang, util) {
+	'./util',
+	'./Timer'
+], function (exports, declare, lang, util, Timer) {
 	var System = declare(null, {
 		_running: false,
 		context: null,
@@ -23,6 +24,7 @@ define([
 		},
 
 		run: function () {
+			Timer.step();
 			this.loopInstance.run();
 		},
 
@@ -36,8 +38,9 @@ define([
 			this.width = width;
 			this.height = height;
 
-			this.loopInstance = new Loop();
-			console.log('starting animation');
+			this.loopInstance = new Loop({
+				canvas: this._canvas
+			});
 			this.startAnimation(lang.hitch(this, this.run));
 		},
 
