@@ -26,6 +26,15 @@ module.exports = function (grunt) {
 				files: ['examples/index.html', '**/*.js', '!node_modules/**', '!bower_components/**'],
 				tasks: ['livereload']
 			}
+		},
+		intern: {
+			dev: {
+				options: {
+					runType: 'runner',
+					config: 'tests/intern',
+					reporters: ['console']
+				}
+			}
 		}
 	});
 
@@ -36,4 +45,5 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-livereload');
 	grunt.loadNpmTasks('grunt-regarde');
 	grunt.loadNpmTasks('grunt-contrib-connect');
+	grunt.loadNpmTasks('intern');
 };

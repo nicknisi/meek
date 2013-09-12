@@ -1,39 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Meek Example Page</title>
-    <link rel="shortcut icon" href="favicon.ico"/>
-</head>
-<body>
-	<canvas id="canvas" width="800" height="600"></canvas>
-	<script>
-		var dojoConfig = {
-			async: true,
-			baseUrl: '../../',
-			packages: [
-				{ name: 'dojo', location: 'bower_components/dojo' },
-				{ name: 'meek', location: '../' },
-				{ name: 'brown', location: 'demos/brown' }
-			]
-		};
-	</script>
-	<script src="../../bower_components/dojo/dojo.js"></script>
-	<script>
-		require([
-			'dojo/_base/declare',
-			'meek/system',
-			'meek/AnimationLoop',
-			'brown/sprites/SuperBrown'
-		], function (declare, meek, AnimationLoop, SuperBrown) {
-			var MyLoop = declare(AnimationLoop, {
-				constructor: function () {
-					this.addEntity(new SuperBrown());
-				}
-			});
+	<head>
+		<meta charset="UTF-8">
+		<title>Meek Example Page</title>
+		<link rel="shortcut icon" href="favicon.ico"/>
+	</head>
+	<body>
+		<canvas id="canvas" width="800" height="600"></canvas>
+		<script>
+			var dojoConfig = {
+				async: true,
+				baseUrl: '../../',
+				packages: [
+					{ name: 'dojo', location: 'bower_components/dojo' },
+					{ name: 'meek', location: '../' },
+					{ name: 'brown', location: 'demos/brown' }
+				]
+			};
+		</script>
+		<script src="../../bower_components/dojo/dojo.js"></script>
+		<script>
+			require([
+				'dojo/_base/declare',
+				'meek/system',
+				'meek/AnimationLoop',
+				'brown/sprites/SuperBrown'
+			], function (declare, meek, AnimationLoop, SuperBrown) {
+				var MyLoop = declare(AnimationLoop, {
+					constructor: function () {
+						this.addEntity(new SuperBrown());
+					}
+				});
 
-			meek.start('canvas', MyLoop, 30, 800, 600);
-		});
-	</script>
-</body>
+				var r = new webkitSpeechRecognition(),
+				final_transcript = '';
+				r.continuous = true;
+				r.interimResults = true;
+
+				r.onresult = function (event) {
+					var interim_transcript = '';
+
+					for (var i = event.resultIndex; i < event.results.length; ++i) {
+						if (event.results[i].isFinal) {
+							final_transcript += event.results[i][0].transcript;
+						} else {
+							interim_transcript += event.results[i][0].transcript;
+						}
+					}
+
+					console.log(interim_transcript);
+				};
+
+				r.start();
+
+				meek.start('canvas', MyLoop, 30, 800, 600);
+			});
+		</script>
+	</body>
 </html>
