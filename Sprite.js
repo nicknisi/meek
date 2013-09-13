@@ -59,8 +59,10 @@ define([
 		},
 
 		_animationSetter: function (val) {
-			this._currAnimation = val;
-			this.timer.reset();
+			if (val !== this._currAnimation) {
+				this._currAnimation = val;
+				this.timer.reset();
+			}
 		},
 
 		drawTile: function (tileIndex, x, y) {
@@ -75,7 +77,12 @@ define([
 			if (!this.context) {
 				this.context = system.context;
 			}
-			this.context.drawImage(image, tile.x, tile.y, tileWidth, tileHeight, destWidth, destHeight, x, y);
+			this.context.drawImage(image,
+				tile.x, tile.y,
+				tileWidth, tileHeight,
+				x, y,
+				destWidth, destHeight
+			);
 		},
 
 		update: function (/*currTime, elapsedTime, inputState*/) {
