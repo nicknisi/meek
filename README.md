@@ -1,3 +1,3 @@
 # Meek
 
-A gentle JavaScript Game Engine
+A gentle JavaScript Animation Helper
