@@ -45,8 +45,8 @@ define([
 		},
 
 		clear: function (color) {
-			this.context.fillColor = color || this.defaultFillColor;
-			this.context.fillRect(0, 0, this.width, this.height);
+			this.context.fillColor = color;
+			this.context[color ? 'fillRect' : 'clearRect'](0, 0, this.width, this.height);
 			// this.context.clearRect(0, 0, this.width, this.height);
 		}
 	});

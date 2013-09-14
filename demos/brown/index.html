@@ -6,7 +6,7 @@
 		<link rel="shortcut icon" href="favicon.ico"/>
 	</head>
 	<body>
-		<canvas id="canvas" width="800" height="600"></canvas>
+		<canvas id="canvas" width="460" height="600"></canvas>
 		<script>
 			var dojoConfig = {
 				async: true,
@@ -31,7 +31,7 @@
 						this.addEntity(new SuperBrown());
 					}
 				});
-
+				/*
 				var r = new webkitSpeechRecognition(),
 				final_transcript = '';
 				r.continuous = true;
@@ -52,8 +52,9 @@
 				};
 
 				r.start();
+				*/
 
-				meek.start('canvas', MyLoop, 30, 800, 600);
+				meek.start('canvas', MyLoop, 30, 460, 600);
 			});
 		</script>
 	</body>

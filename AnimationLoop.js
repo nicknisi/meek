@@ -4,7 +4,8 @@ define([
 	'dojo/Stateful',
 	'dojo/on',
 	'./system',
-], function (declare, lang, Stateful, on, system) {
+	'./input'
+], function (declare, lang, Stateful, on, system, input) {
 	return declare(Stateful, {
 		inputState: null,
 		entities: null,
@@ -16,9 +17,6 @@ define([
 		constructor: function (options) {
 			lang.mixin(this, options);
 			this.entities = {};
-			// on(this.canvas, 'keypress', function (evt) {
-			// 	self.set('inputState', evt.charOrCode);
-			// });
 		},
 
 		_runEach: function (method, args) {
@@ -34,6 +32,7 @@ define([
 		},
 
 		update: function () {
+			this.inputState = input.getState();
 			this.currTime = Date.now();
 			this.elapsedTime = Math.min(this.currTime - this.prevTime, this.maxStep);
 			this.prevTime = this.currTime;
@@ -41,12 +40,11 @@ define([
 		},
 
 		draw: function () {
-			system.clear('#000');
+			system.clear();
 			this._runEach('draw');
 		},
 
 		run: function () {
-			system.clear('#000');
 			this.update();
 			this.draw();
 		}

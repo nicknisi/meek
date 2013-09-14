@@ -20,6 +20,7 @@ define([
 		_animations: null, // array of frames that makes up animation
 		_currAnimation: null, // current animation index
 		context: null,
+		direction: 1,
 		x: 0,
 		y: 0,
 		timer: null,
@@ -42,8 +43,8 @@ define([
 			this._tiles = [];
 			for (i = 0; i < this.numTiles; ++i) {
 				this._tiles.push({
-					x: (i % this.cols) * this.tileWidth * this.scale,
-					y: Math.floor(i / this.cols) * this.tileHeight * this.scale
+					x: (i % this.cols) * this.tileWidth,
+					y: Math.floor(i / this.cols) * this.tileHeight
 				});
 			}
 		},
@@ -68,17 +69,22 @@ define([
 		drawTile: function (tileIndex, x, y) {
 			var tile = this._tiles[tileIndex],
 				scale = this.scale,
+				sourceX = tile.x,
+				sourceY = tile.y,
 				tileWidth = this.tileWidth,
 				tileHeight = this.tileHeight,
 				image = this.image,
 				destWidth = tileWidth * scale,
 				destHeight = tileHeight * scale;
 
+			x = Math.round(x * scale);
+			y = Math.round(y * scale);
+
 			if (!this.context) {
 				this.context = system.context;
 			}
 			this.context.drawImage(image,
-				tile.x, tile.y,
+				sourceX, sourceY,
 				tileWidth, tileHeight,
 				x, y,
 				destWidth, destHeight
