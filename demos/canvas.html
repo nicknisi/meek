@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Canvas Test Page</title>
+	<style>
+		canvas {
+			border: 2px solid #000;
+		}
+	</style>
+	<script>
+		var dojoConfig = {
+			async: true,
+			baseUrl: '../',
+			packages: [
+				{ name: 'dojo', location: 'bower_components/dojo' },
+				{ name: 'meek', location: './' },
+				{ name: 'brown', location: 'demos/brown' }
+			]
+		};
+	</script>
+	<script src="../bower_components/dojo/dojo.js"></script>
+</head>
+<body>
+	<canvas id="canvas" width="800" height="600"></canvas>
+	<script>
+		require([
+			'meek/plugin/image!images/scrooge.png',
+			'dojo/domReady!'
+		], function (image) {
+			var canvas = document.getElementById('canvas'),
+			c = canvas.getContext('2d'),
+			w = 165,
+			h = 240,
+			posX = 100,
+			posY = 100,
+			flip = true;
+
+			if (flip) {
+				posX = -posX - w;
+				c.scale(-1, 1);
+			}
+
+			// c.translate(400, 300);
+
+			// c.drawImage(image, 0, 0, w, h, posX, posY, w, h);
+			c.drawImage(image, posX, posY, w, h);
+			// c.drawImage(image, 0, 0);
+		});
+	</script>
+</body>
+</html>

@@ -4,6 +4,11 @@
 		<meta charset="UTF-8">
 		<title>Meek Example Page</title>
 		<link rel="shortcut icon" href="favicon.ico"/>
+		<style>
+			canvas {
+				border: 2px solid #000;
+			}
+		</style>
 	</head>
 	<body>
 		<canvas id="canvas" width="460" height="600"></canvas>
@@ -13,7 +18,7 @@
 				baseUrl: '../../',
 				packages: [
 					{ name: 'dojo', location: 'bower_components/dojo' },
-					{ name: 'meek', location: '../' },
+					{ name: 'meek', location: './' },
 					{ name: 'brown', location: 'demos/brown' }
 				]
 			};
