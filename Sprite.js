@@ -91,7 +91,7 @@ define([
 			);
 		},
 
-		update: function (/*currTime, elapsedTime, inputState*/) {
+		update: function () {
 			var anim = this._animations[this._currAnimation],
 				sequence = anim.sequence,
 				refresh = anim.refresh,

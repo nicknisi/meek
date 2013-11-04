@@ -14,8 +14,8 @@ define([
 		y: 100,
 		dx: 0,
 		dy: 0,
-		velocity: 1,
-		scale: 3,
+		velocity: 30,
+		scale: 2,
 
 		constructor: function () {
 			this.inherited(arguments);
@@ -27,17 +27,18 @@ define([
 			input.bind(keys.LEFT_ARROW, 'left');
 		},
 
-		update: function (f, k, inputState) {
+		update: function (currTime, elapsedTime, inputState) {
 			switch (inputState) {
 			case 'left':
 				this.direction = -1;
 				this.set('animation', 'running-left');
-				this.dx = 5;
+				this.x = (this.x - this.velocity * this.timer.delta());
 				break;
 			case 'right':
 				this.direction = 1;
 				this.set('animation', 'running-right');
 				this.dx = 5;
+				this.x = this.x + (this.velocity * this.timer.delta());
 				break;
 			default:
 				this.set('animation', 'waiting-right');
